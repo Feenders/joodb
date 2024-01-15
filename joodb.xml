@@ -75,6 +75,6 @@
 		</languages>
 	</administration>
 	<updateservers>
-		<server type="extension" priority="1" name="JooDatabase Updates"><![CDATA[http://joodb.feenders.de/update.html?version=4&format=xml]]></server>
+		<server type="extension" priority="1" name="JooDatabase Updates"><![CDATA[https://joodb.feenders.de/update.html?version=4&format=xml]]></server>
 	</updateservers>
 </extension>
