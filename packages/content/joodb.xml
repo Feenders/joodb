@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" method="update">
+	<name>JooDB - Contentplugin</name>
+	<author>Dirk Hoeschen - computer * daten * netze : feenders</author>
+	<creationDate>Oct 2017</creationDate>
+	<copyright>Copyright (c) 2017 computer * daten * netze : feenders. All rights reserved.</copyright>
+	<license>GNU/GPL v3</license>
+	<authorEmail>service@feenders.de</authorEmail>
+	<authorUrl>http://joodb.feenders.de</authorUrl>
+	<version>4.0</version>
+	<description>
+	    <![CDATA[
+		<h3>You have successfully installed the JooDatabase contentplugin</h3>
+		<p>With this plugin you can display a single dataset in a normal content article by entering {joodbitem ID}</p>
+		<p>For example: {joodbitem 20} will be replaced by the single entry view of dataset nr 20.</p>
+		<p>With a second, comma-separated parameter you can choose the database to use. (i.e {joodbitem 15,2})</p>
+		<p style="color: #d40000;">Click here to &raquo;<a href="index.php?option=com_plugins&amp;filter_type=content&amp;search=JooDB" title="Enable plugin"><bold>ENABLE the plugin</bold></a>&laquo; in the Joomla plugin manager after installation!</p>
+		<p style="color: #d40000;">Dont forget to set the desired JooDB database after enabling the plugin.</p>
+		]]>
+	</description>
+	<files>
+		<filename plugin="joodb">joodb.php</filename>
+		<filename>index.html</filename>		
+	</files>
+	<config>
+		<fields name="params">	
+			<fieldset name="basic">
+				<field name="joobase" type="sql" default="1" label="Database" description="PARAMSELECTDB" query="SELECT id AS value, name AS joobase FROM #__joodb" />
+			</fieldset>	
+		</fields>
+	</config>
+</extension>

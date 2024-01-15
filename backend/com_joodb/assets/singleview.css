@@ -1,0 +1,4 @@
+/** Component view  **/
+.icon-forward:before {
+	content: "\e00a";
+}

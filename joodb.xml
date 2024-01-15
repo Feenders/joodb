@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="4.5" method="install">
+	<name>joodb</name>
+	<creationDate>Jan 2024</creationDate>
+	<author>Dirk Hoeschen, computer daten netze - feenders, joodb.feenders.de</author>
+	<copyright>Copyright (C) 2009-2024 computer daten netze - feenders. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<authorEmail>service@feenders.de</authorEmail>
+	<authorUrl>http://joodb.feenders.de</authorUrl>
+	<version>4.5</version>
+	<description><![CDATA[
+		JooDatabase is simple and fast way to include and display external tables (collections, databases) into Joomla.<br/>
+		It automatically generates pages containing the table data using editable templates for catalog and single entry views.<br/>
+		Special elements like print-icons and pagination-links are displayed at the desired position in the templates.<br/>
+		JooDatabase handles the linking, routing between the pages automatically.
+	]]></description>
+	<scriptfile>install.php</scriptfile>
+	<files folder="frontend/com_joodb/">
+		<folder>helpers</folder>
+		<folder>models</folder>
+		<folder>plugins</folder>
+		<folder>views</folder>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>joodb.php</filename>
+		<filename>router.php</filename>
+	</files>
+	<media folder="media/" destination="com_joodb">
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>fonts</folder>
+		<folder>images</folder>
+		<filename>index.html</filename>
+		<filename>editor.php</filename>
+		<filename>LICENSE_MIT</filename>
+		<filename>LICENSE_CODEMIRROR2</filename>
+		<filename>LICENSE_FONTELLO</filename>
+	</media>
+	<languages folder="frontend/language/">
+		<language tag="en-GB">en-GB.com_joodb.ini</language>
+		<language tag="de-DE">de-DE.com_joodb.ini</language>
+		<language tag="nl-NL">nl-NL.com_joodb.ini</language>
+		<language tag="fr-FR">fr-FR.com_joodb.ini</language>
+	</languages>
+	<administration>
+		<menu view="joodb" img="database.png"  link="option=com_joodb">JooDB</menu>
+		<submenu>
+			<menu view="joodb" img="database.png" link="option=com_joodb">Databases</menu>
+			<menu view="info" img="info.png" link="option=com_joodb&amp;view=info">Info</menu>
+		</submenu>
+		<files folder="backend/com_joodb">
+			<filename>config_items.xml</filename>
+			<filename>config.xml</filename>
+			<filename>access.xml</filename>
+			<filename>controller.php</filename>
+			<filename>index.html</filename>
+			<filename>joodb.php</filename>
+			<filename>LICENSE</filename>
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+		<languages folder="backend/language/">
+			<language tag="en-GB">en-GB.com_joodb.ini</language>
+			<language tag="en-GB">en-GB.com_joodb.sys.ini</language>
+			<language tag="de-DE">de-DE.com_joodb.ini</language>
+			<language tag="de-DE">de-DE.com_joodb.sys.ini</language>
+			<language tag="nl-NL">nl-NL.com_joodb.ini</language>
+			<language tag="nl-NL">nl-NL.com_joodb.sys.ini</language>
+			<language tag="fr-FR">fr-FR.com_joodb.ini</language>
+			<language tag="fr-FR">fr-FR.com_joodb.sys.ini</language>			
+		</languages>
+	</administration>
+	<updateservers>
+		<server type="extension" priority="1" name="JooDatabase Updates"><![CDATA[http://joodb.feenders.de/update.html?version=4&format=xml]]></server>
+	</updateservers>
+</extension>

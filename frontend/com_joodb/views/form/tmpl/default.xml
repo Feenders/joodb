@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="STANDARD_FORM_LAYOUT">
+		<message>
+			<![CDATA[STANDARD_FORM_LAYOUT_DESC]]>
+		</message>
+	</layout>
+	<fields name="params">	
+		<fieldset name="basic">
+			<field name="joobase" type="sql" default="1" label="Database" description="PARAMSELECTDB" query="SELECT id AS value, name AS joobase FROM #__joodb" />
+			<field name="infomail" type="radio" default="1" label="Send email" description="Send Email Desc" class="btn-group">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+			</field>		
+			<field name="infomail_user"  type="sql" default="1" label="Select email" query="SELECT id AS value, email AS infomail_user FROM #__users" />
+			<field name="redirect" type="radio" default="0" label="Redirect" description="Redirect desc" class="btn-group">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+			</field>
+			<field name="redirect_to" type="menuitem" state="1" disable="menulink, separator" label="Redirect to" description="Menu Item to link to..." />
+		</fieldset>
+	</fields>		
+</metadata>

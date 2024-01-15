@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="basic" description="Access rights">
+		<field name="accessd" type="accesslevel" default="1" label="Data Access" description="DETAILDATAACCESS" />
+		<field name="accessf" type="accesslevel" default="2" label="Form Access" description="DETAILFORMACCESS" />
+		<field name="accesse" type="list" size="1" default="1" label="EDIT_ACCESS" description="EDIT_ACCESS_DESC">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+	</fieldset>	
+	<fieldset name="images" description="Images">
+		<field name="img_width" type="text" size="4" default="800" label="Image width" description="Maximum value" />
+		<field name="img_height" type="text" size="4" default="480" label="Image height" description="Maximum value" />
+		<field name="thumb_width" type="text" size="4" default="240" label="Thumb width" description="Maximum value" />
+		<field name="thumb_height" type="text" size="4" default="180" label="Thumb height" description="Maximum value" />
+	</fieldset>
+	<fieldset name="database" description="External Database">
+		<field name="extdb" type="text" size="20"  default="" label="External Database" description="DETAILEXTDB" />
+		<field name="extdb_server" type="text" size="20"  default="" label="Server" description="DETAILEXTDBSRV" />
+		<field name="extdb_user" type="text" size="10"  default="" label="Username" description="DETAILUSEREXTDB" />
+		<field name="extdb_pass" type="text" size="10"  default="" label="Password" description="DETAILPASSEXTDB" />
+	</fieldset>	
+</config>

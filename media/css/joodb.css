@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+/* JoodDB css File */
+/* If you want to keep changes on update copy this file to your template cc folder */
+/* (/templates/YOUR_TEMPLATE/css/joodb.css) */
+
+/* Joodb form */
+#joodbForm fieldset { display: block; position: relative; overflow: visible; padding: 10px 15px; margin: 10px 0; border: 1px solid #dddddd; background: #f5f5f5; border-radius: 5px; }
+#joodbForm legend { background-color: #444; box-shadow: 2px 2px 5px rgba(00,00,00,0.4); border-radius: 3px; padding: 2px 5px; color: #fff; }
+#joodbForm label { margin: 5px 0 3px 0; }
+#joodbForm input.required, #joodbForm  textarea.required, #joodbForm  select.required { background-color: #fffac9; }
+#joodbForm label.invalid { color: #d40000; }
+#joodbForm input.invalid, #joodbForm  textarea.invalid, #joodbForm  select.invalid { border: 1px solid #d40000; }
+
+#joodbForm textarea { width: inherit; box-sizing: border-box; }
+#joodbForm .control-group { float: left; display: block; width: 100%; box-sizing: border-box; }
+#joodbForm .input-mini {  width: 60px; }
+#joodbForm .input-small { width: 90px; }
+#joodbForm .input-medium { width: 150px; }
+#joodbForm .input-large { width: 210px; }
+#joodbForm .input-xlarge { width: 270px; }
+#joodbForm .input-xxlarge {  width: 100%; }
+#joodbForm .text-large { font-size: 1.4em; height: auto;  line-height: 1.46em; height: auto; }
+
+/* Definition Lists */
+.joodb dl { display: flex; flex-wrap: wrap; margin: 5px 0; line-height: 1.4em; padding: 0;  box-sizing: padding-box;   }
+.joodb dt {  display: flex; width: 25%; color: #666; font-weight: bold; min-height: 1.4em; margin: 0; padding: 5px;   box-sizing: border-box; }
+.joodb dd { display: flex; min-height: 1.4em;  margin: 0; padding: 5px; width: 75%;  box-sizing: border-box;  }
+
+/* Search form */
+#joodbForm .searchbox {  display: inline-flex; flex-wrap: wrap;  margin: 15px 0; clear: both;}
+#joodbForm .searchbox input, #joodbForm .searchbox select { width: auto; min-width: 150px; margin-right: .6rem; margin-bottom: .4rem; }
+#joodbForm .searchbox button {  margin-right: .6rem;  margin-bottom: .4rem; }
+
+.joodb .table { display: table;}
+.joodb .tr { display: table-row;}
+.joodb .td { display: table-cell;  padding: 10px;vertical-align: top; }
+
+/* Pagination */
+/* .joodb div.pagination { display: inline-block; margin: 15px 0; clear: both; } */
+.joodb .alphabox  { display: table; clear: both; margin: 10px 0; }
+.joodb .alphabox ul { display: inline-flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+.joodb .alphabox li { margin: 0 .25rem .4rem 0; background: none; padding: .2rem .4rem; border: 1px solid #ced4da; background-color: #f5f5f5; }
+.joodb .alphabox li:hover { background-color: #f0f0f0; }
+.joodb .alphabox li a { text-decoration: none; }
+.joodb .alphabox li.active { background: #356aa0; color: #ffffff; }
+
+.joodb small, .joodb .small { color: #666666; }
+.joodb .d-block { display: block!important; width: 100%; }
+
+/* tables */
+.joodb table { background: #fff; border-collapse: collapse;  border-spacing: 0; text-align: left;  width: 100%; }
+.joodb table tr:nth-child(odd) > td, .odd { background-color: #f5f5f5;  }
+.joodb table td { border-bottom: .1rem solid #efefef; padding: 5px 8px; }
+.joodb table th, .joodb .header { background: #356aa0; color: #fff; border-bottom: 1px solid #ccc; padding: 5px 8px; text-align: left; font-size: 1.1em; font-weight: 600; }
+.joodb table th a, .joodb .header a {  color: #fff; text-decoration: none; }
+.joodb table th a:hover, .joodb .header a:hover {  color: #ffa; text-decoration: none; }
+
+.joodb .block { display: block; clear: both; overflow: hidden; padding: 10px; margin-bottom: 10px; border: 1px solid #f0f0f0; border-radius: 3px; }
+.joodb .title { padding: 0; margin: 0 0 5px 0; font-size: 1.2em; }
+
+.nodata { display: block; font-size: 1.2em; font-weight: bold; color: #d40000; margin: 5px 0; }
+.prevbutton, .nextbutton ,.readonbutton, .backbutton  { display: inline-block; margin: 5px 0; }
+.nextbutton ,.readonbutton { float: right; }
+.item-separator { border-bottom: 1px solid #f5f5f5; margin: 10px 0 10px 0; height: 1px; line-height: 1px; }
+.clr {  *zoom: 1;  }
+.clr:before, .block:before,
+.clr:after, .block:after { display: table;  content: ""; line-height: 0;  }
+.database-thumb, .database-image { background: #ffffff; border: 1px solid #ddd; padding: 2px; border-radius: 4px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.11); height: auto; }
+
+@media (max-width: 768px) {
+    .joodb dt, .joodb dd { width: 100% }
+    .joodb dd { margin-bottom: 10px; }
+
+}
+

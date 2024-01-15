@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="LIST_VIEW">
+		<message>
+			<![CDATA[LIST_VIEW_DESC]]>
+		</message>
+	</layout>
+	<fields name="params">	
+		<fieldset name="basic" addfieldpath="/components/com_joodb/models/fields/" >
+			<field name="joobase" type="sql" default="1" label="Database" description="PARAMSELECTDB" query="SELECT id AS value, name AS joobase FROM #__joodb" />
+			<field name="where_statement" type="textarea" default="" rows="5" cols="30" label="SQL-WHERE Statement" description="SQL-WHERE Statement description" />
+			<field name="@spacer" type="spacer" default="" label="" description="" />
+            <field name="orderby" type="order" default="ftitle" label="JFIELD_ORDERING_LABEL" description="JFIELD_ORDERING_DESC" />
+            <field name="ordering" type="radio" default="ASC" label="JGLOBAL_ARTICLE_ORDER_LABEL" description="JGLOBAL_ARTICLE_ORDER_DESC" class="btn-group">
+                <option value="ASC">Sort Ascending</option>
+                <option value="DESC">Sort Descending</option>
+            </field>
+            <field name="limit" type="text" default="10" label="Limit" description="PAGINATION_LIMIT"/>
+        </fieldset>
+        <fieldset name="header">
+            <field name="description" type="editor"  filter="safehtml"  default="" label="Intro text" rows="5" cols="30" description="Intro on first page"/>
+            <field name="show_description" type="radio" default="0" label="Show intro text" description="Show Intro text" class="btn-group">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="image" type="media" label="Image" description="Image above first page" />
+            <field name="image_align" type="radio" default="right" label="Align" description="Alignment of the image" class="btn-group">
+                <option value="left">left</option>
+                <option value="right">Right</option>
+            </field>
+        </fieldset>
+		<fieldset name="advanced">
+			<field name="link_titles" type="radio" default="1" label="Link Titles" description="Link Titles Desc" class="btn-group">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+			</field>
+			<field name="link_urls" type="radio" default="0" label="Link URL" description="Link URL Desc" class="btn-group">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+			</field>
+			<field name="limit_to_user" type="radio" default="0" label="LIMIT_TO_USER" description="LIMIT_TO_USER_DESC" class="btn-group">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+			<field name="search_all" type="radio" default="0" label="SEARCH_ALL" description="SEARCH_ALL_DESC" class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+			</field>
+            <field name="form_only" type="radio" default="0" label="FORM_ONLY" description="FORM_ONLY_DESC" class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+			<field type="spacer" name="myspacer" hr="true" />
+			<field name="exportfields" type="textarea" default="" cols="30" rows="3" label="Exportfields" description="List of fieldnames" />
+			<field name="eportlimit" type="text" default="100" label="Exportlimit" description="Max Exportentries" />
+		</fieldset>
+	</fields>
+</metadata>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+    <fields name="filter">
+
+        <field
+                name="search"
+                type="text"
+                inputmode="search"
+                label="Suche"
+                description="Suche nach Name oder ID:xxx"
+                hint="JSEARCH_FILTER"
+        />
+
+    </fields>
+
+    <fields name="list">
+
+        <field
+                name="fullordering"
+                type="list"
+                label="JGLOBAL_SORT_BY"
+                default="id DESC"
+                statuses="*,0,1,2,-2"
+                onchange="this.form.submit();"
+                validate="options"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="id ASC">JGRID_HEADING_ID_ASC</option>
+            <option value="id DESC">JGRID_HEADING_ID_DESC</option>
+            <option value="published ASC">JSTATUS_ASC</option>
+            <option value="published DESC">JSTATUS_DESC</option>
+            <option value="title ASC">JGLOBAL_TITLE_ASC</option>
+            <option value="title DESC">JGLOBAL_TITLE_DESC</option>
+            <option value="created ASC">JDATE_ASC</option>
+            <option value="created DESC">JDATE_DESC</option>
+        </field>
+
+        <field
+                name="limit"
+                type="limitbox"
+                label="JGLOBAL_LIST_LIMIT"
+                default="25"
+                onchange="this.form.submit();"
+        />
+
+    </fields>
+</form>

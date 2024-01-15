@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="EDIT_LAYOUT">
+		<message>
+			<![CDATA[EDIT_LAYOUT_DESC]]>
+		</message>
+	</layout>
+	<fields name="params">	
+		<fieldset name="basic">
+			<field name="joobase" type="sql" default="1" label="Database" description="PARAMSELECTDB" query="SELECT id AS value, name AS joobase FROM #__joodb" />
+		</fieldset>
+	</fields>
+</metadata>
