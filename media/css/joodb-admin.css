@@ -2,8 +2,8 @@
 .fltlft { display: inline-block; *display: inline;  float: left; }
 .fltrt { display: inline-block; *display: inline;  float: right; }
 
-.noticebox { display: none; padding: 10px; border: 1px solid #ccc; background-color: #FFFFD7; margin: 5px 0; position: absolute; z-index: 100; }
-.elementbox { display: block; padding: 10px; border: 1px solid #ccc; background-color: #EBF4FF; margin: 5px 0;  }
+.noticebox { display: none; padding: 10px; border: 1px solid #ccc; background-color: #fff0b3; color: #444!important; margin: 5px 0; position: absolute; z-index: 100; }
+.elementbox { display: block; padding: 10px; border: 1px solid #ccc; background-color: rgba(2, 15, 39, 0.24); margin: 5px 0;  }
 
 table.paramlist {   width: 100%; }
 table.paramlist td, table.paramlist th { vertical-align: top; padding: 5px;}
@@ -11,7 +11,7 @@ table.paramlist label { margin-right: 5px; }
 td.paramlist_key { min-width: 230px; width: 20%; }
 td.paramlist_value {  width: 80%; }
 
-hr{ border: 0px; border-top: solid 1px #cccccc; border-bottom: solid 1px #FFFFFF; }
+hr{ border: 0; border-top: solid 1px #cccccc; border-bottom: solid 1px #FFFFFF; }
 
 .inline { display: inline-block; *display: inline; width: auto; }
 label.inline { min-width: inherit !important; width: inherit !important; clear: none;}

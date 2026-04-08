@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<extension version="4.0" type="plugin" group="quickicon">
-	<name>plg_quickicon_joodb</name>
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="quickicon" method="update">
+	<name>PLG_QUICKICON_JOODB</name>
 	<author>Feenders.de</author>
 	<creationDate>Oct 2021</creationDate>
-	<copyright>Copyright (C) 2021 All rights reserved.</copyright>
+	<copyright>Copyright (C) 2021-2026 All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>service@feenders.de</authorEmail>
 	<authorUrl>www.feenders.de</authorUrl>
-	<version>4.0</version>
+	<version>5.0</version>
 	<description>PLG_QUICKICON_JOODB_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="joodb">joodb.php</filename>
+		<folder>language</folder>
 	</files>
-	<languages>
-		<language tag="en-GB">en-GB.plg_quickicon_joodb.ini</language>
-		<language tag="en-GB">en-GB.plg_quickicon_joodb.sys.ini</language>
-		<language tag="de-DE">de-DE.plg_quickicon_joodb.ini</language>
-		<language tag="de-DE">de-DE.plg_quickicon_joodb.sys.ini</language>
+	<languages folder="language/">
+		<language tag="en-GB">en-GB/plg_quickicon_joodb.ini</language>
+		<language tag="en-GB">en-GB/plg_quickicon_joodb.sys.ini</language>
+		<language tag="de-DE">de-DE/plg_quickicon_joodb.ini</language>
+		<language tag="de-DE">de-DE/plg_quickicon_joodb.sys.ini</language>
 	</languages>	
 	<config>
 		<fields name="params">

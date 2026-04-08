@@ -16,5 +16,5 @@ if (isset($part->parameter[0]) && !empty($this->items)) {
 	foreach ($this->items AS $item) {
 		$summary += (float) $item->{$field};
 	}
-	$output .= number_format($summary, $decimals, JText::_('DECIMALS_SEPARATOR'), JText::_('THOUSANDS_SEPARATOR'));
+	$output .= number_format($summary, $decimals, Text::_('DECIMALS_SEPARATOR'), Text::_('THOUSANDS_SEPARATOR'));
 }

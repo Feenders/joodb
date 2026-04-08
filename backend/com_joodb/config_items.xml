@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	<fieldset name="basic" description="Access rights">
-		<field name="accessd" type="accesslevel" default="1" label="Data Access" description="DETAILDATAACCESS" />
-		<field name="accessf" type="accesslevel" default="2" label="Form Access" description="DETAILFORMACCESS" />
-		<field name="accesse" type="list" size="1" default="1" label="EDIT_ACCESS" description="EDIT_ACCESS_DESC">
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
+	<fieldset name="basic" description="JDB_ACCESS_RIGHTS">
+		<field name="accessd" type="accesslevel" default="1" label="JDB_DATA_ACCESS" description="JDB_DETAILDATAACCESS" />
+		<field name="accessf" type="accesslevel" default="2" label="JDB_FORM_ACCESS" description="JDB_DETAILFORMACCESS" />
+		<field name="accesse" type="radio" layout="joomla.form.field.radio.switcher" size="1" default="1" label="JDB_EDIT_ACCESS" description="JDB_EDIT_ACCESS_DESC">
+			<option value="0">JDB_NO</option>
+            <option value="1">JDB_YES</option>
 		</field>
 	</fieldset>	
 	<fieldset name="images" description="Images">
-		<field name="img_width" type="text" size="4" default="800" label="Image width" description="Maximum value" />
-		<field name="img_height" type="text" size="4" default="480" label="Image height" description="Maximum value" />
-		<field name="thumb_width" type="text" size="4" default="240" label="Thumb width" description="Maximum value" />
-		<field name="thumb_height" type="text" size="4" default="180" label="Thumb height" description="Maximum value" />
+		<field name="img_width" type="text" size="4" default="1200" label="JDB_IMAGE_WIDTH" description="JDB_MAXIMUM_VALUE" />
+		<field name="img_height" type="text" size="4" default="900" label="JDB_IMAGE_HEIGHT" description="JDB_MAXIMUM_VALUE" />
+		<field name="thumb_width" type="text" size="4" default="480" label="JDB_THUMB_WIDTH" description="JDB_MAXIMUM_VALUE" />
+		<field name="thumb_height" type="text" size="4" default="360" label="JDB_THUMB_HEIGHT" description="JDB_MAXIMUM_VALUE" />
 	</fieldset>
-	<fieldset name="database" description="External Database">
-		<field name="extdb" type="text" size="20"  default="" label="External Database" description="DETAILEXTDB" />
-		<field name="extdb_server" type="text" size="20"  default="" label="Server" description="DETAILEXTDBSRV" />
-		<field name="extdb_user" type="text" size="10"  default="" label="Username" description="DETAILUSEREXTDB" />
-		<field name="extdb_pass" type="text" size="10"  default="" label="Password" description="DETAILPASSEXTDB" />
+	<fieldset name="database" description="JDB_EXTERNAL_DATABASE">
+		<field name="extdb" type="text" size="20"  default="" label="JDB_EXTERNAL_DATABASE" description="JDB_DETAILEXTDB" />
+		<field name="extdb_server" type="text" size="20"  default="" label="JDB_SERVER" description="JDB_DETAILEXTDBSRV" />
+		<field name="extdb_user" type="text" size="10"  default="" label="JDB_USERNAME" description="JDB_DETAILUSEREXTDB" />
+		<field name="extdb_pass" type="text" size="10"  default="" label="JDB_PASSWORD" description="JDB_DETAILPASSEXTDB" />
 	</fieldset>	
 </config>

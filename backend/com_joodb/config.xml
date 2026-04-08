@@ -4,14 +4,18 @@
 		name="general"
 		label="JOODB_GLOBAL"
 		description="COM_JOODB_SETTINGS_DESC">
-		<field name="show_icons" type="radio" default="0" label="Icons" description="SHOWICONS" class="btn-group">
-			<option value="0">Hide</option>
-			<option value="1">Show</option>
+		<field name="show_icons" type="radio"
+               layout="joomla.form.field.radio.switcher"
+               default="0" label="JDB_ICONS" description="JDB_SHOWICONS" class="btn-group btn-group-yesno">
+			<option value="0">JHide</option>
+			<option value="1">JShow</option>
 		</field>
-		<field name="internal_editor" type="radio" default="1" label="Editor" description="INTERNALEDITOR" class="btn-group">
-			<option value="1">JYes</option>
-			<option value="0">JNo</option>
-		</field>		
+		<field name="internal_editor" type="radio"
+               layout="joomla.form.field.radio.switcher"
+               default="1" label="JDB_EDITOR" description="JDB_INTERNALEDITOR" class="btn-group btn-group-yesno">
+			<option value="0">JDB_NO</option>
+            <option value="1">JDB_YES</option>
+		</field>
 	</fieldset>
 	<fieldset
 		name="permissions"

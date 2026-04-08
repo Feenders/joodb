@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="JDB_CATALOG_VIEW">
+        <message>
+            <![CDATA[JDB_CATALOG_VIEW_DESC]]>
+        </message>
+    </layout>
+    <fields name="params">
+        <fieldset name="basic" addfieldprefix="Feenders\Component\Joodb\Site\Field">
+            <field name="joobase" type="sql" default="1" label="JDB_DATABASE" description="JDB_PARAMSELECTDB"
+                   query="SELECT id AS value, name AS joobase FROM #__joodb"/>
+            <field name="where_statement" type="textarea" default="" rows="5" cols="30" filter="raw"
+                   label="JDB_SQL-WHERE_STATEMENT" description="JDB_SQL-WHERE_STATEMENT_DESCRIPTION"/>
+            <field name="@spacer" type="spacer" default="" label="" description=""/>
+            <field name="orderby" type="order" default="ftitle" label="JFIELD_ORDERING_LABEL"
+                   description="JFIELD_ORDERING_DESC"/>
+            <field name="ordering" type="radio" default="ASC" label="JGLOBAL_ARTICLE_ORDER_LABEL"
+                   description="JGLOBAL_ARTICLE_ORDER_DESC" class="btn-group btn-group-yesno">
+                <option value="ASC">JGLOBAL_ORDER_ASCENDING</option>
+                <option value="DESC">JGLOBAL_ORDER_DESCENDING</option>
+            </field>
+            <field name="limit" type="text" default="10" label="JDB_LIMIT" description="JDB_PAGINATION_LIMIT"/>
+        </fieldset>
+        <fieldset name="display" label="JGLOBAL_FIELDSET_DISPLAY_OPTIONS">
+            <field name="description" type="editor" filter="safehtml" default="" label="JDB_INTRO_TEXT" rows="5" cols="30"
+                   description="JDB_INTRO_ON_FIRST_PAGE"/>
+            <field name="show_description" type="radio" default="0" label="JDB_SHOW_INTRO_TEXT"
+                   description="JDB_SHOW_INTRO_TEXT" class="btn-group">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="image" type="media" label="JDB_IMAGE" description="JDB_IMAGE_ABOVE_FIRST_PAGE"/>
+            <field name="image_align" type="radio" default="right" label="JDB_ALIGN" description="JDB_ALIGNMENT_OF_THE_IMAGE"
+                   class="btn-group">
+                <option value="left">JDB_LEFT</option>
+                <option value="right">JDB_RIGHT</option>
+            </field>
+        </fieldset>
+        <fieldset name="advanced">
+            <field name="link_titles" type="radio" default="1" label="JDB_LINK_TITLES" description="JDB_LINK_TITLES_DESC"
+				   layout="joomla.form.field.radio.switcher"
+                   class="btn-group"
+            >
+                <option value="0">JNO</option>
+				<option value="1">JYES</option>
+            </field>
+            <field name="link_urls" type="radio" default="0" label="JDB_LINK_URL" description="JDB_LINK_URL_DESC"
+				   layout="joomla.form.field.radio.switcher"
+                   class="btn-group">
+                <option value="0">JNO</option>
+				<option value="1">JYES</option>
+            </field>
+            <field name="limit_to_user" type="radio" default="0" label="JDB_LIMIT_TO_USER" description="JDB_LIMIT_TO_USER_DESC"
+				   layout="joomla.form.field.radio.switcher"
+                   class="btn-group">
+                <option value="0">JNO</option>
+				<option value="1">JYES</option>
+            </field>
+            <field name="search_all" type="radio" default="0" label="JDB_SEARCH_ALL" description="JDB_SEARCH_ALL_DESC"
+				   layout="joomla.form.field.radio.switcher"
+                   class="btn-group">
+                <option value="0">JNO</option>
+				<option value="1">JYES</option>
+            </field>
+            <field name="form_only" type="radio" default="0" label="JDB_FORM_ONLY" description="JDB_FORM_ONLY_DESC"
+				   layout="joomla.form.field.radio.switcher"
+                   class="btn-group">
+                <option value="0">JNO</option>
+				<option value="1">JYES</option>
+            </field>
+            <field type="spacer" name="myspacer" hr="true"/>
+            <field name="exportfields" type="textarea" default="" cols="30" rows="3" label="JDB_EXPORTFIELDS"
+                   description="JDB_LIST_OF_FIELDNAMES"/>
+            <field name="eportlimit" type="text" default="100" label="JDB_EXPORTLIMIT" description="JDB_MAX_EXPORTENTRIES"/>
+        </fieldset>
+    </fields>
+</metadata>

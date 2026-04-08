@@ -14,7 +14,7 @@ defined('_JEXEC') or die('Restricted access');
  * You can read passed parameters with the $part->parameter array; 
  */
 
-$user = JFactory::getUser(); // get the juser object
+$user = Factory::getUser(); // get the juser object
 if (!empty($user->name)) { // if the user is logged in
 	$value = (count($part->parameter)>=1) ?  $part->parameter[0] : "name";  // get element from parameter 0 (default name)
 	$output .= $user->{$value}; // write to output

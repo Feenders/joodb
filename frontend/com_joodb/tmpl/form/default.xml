@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="JDB_STANDARD_FORM_LAYOUT">
+		<message>
+			<![CDATA[JDB_STANDARD_FORM_LAYOUT_DESC]]>
+		</message>
+	</layout>
+	<fields name="params">	
+		<fieldset name="basic">
+            <field name="joobase" type="sql" default="1" label="JDB_DATABASE" description="JDB_PARAMSELECTDB" query="SELECT id AS value, name AS joobase FROM #__joodb" />
+			<field name="infomail" type="radio" default="1" label="JDB_SEND_EMAIL" description="JDB_SEND_EMAIL_DESC" class="btn-group" layout="joomla.form.field.radio.switcher">
+				<option value="0">JNO</option>
+                <option value="1">JYES</option>
+			</field>
+			<field name="infomail_user"  type="sql" default="1" label="JDB_SELECT_EMAIL" query="SELECT id AS value, email AS infomail_user FROM #__users" />
+			<field name="redirect" type="radio" default="0" label="JDB_REDIRECT" description="JDB_REDIRECT_DESC" class="btn-group" layout="joomla.form.field.radio.switcher">
+					<option value="0">JNO</option>
+                <option value="1">JYES</option>
+			</field>
+			<field name="redirect_to" type="menuitem" state="1" disable="menulink, separator" label="JDB_REDIRECT_TO" description="JDB_MENU_ITEM" />
+		</fieldset>
+	</fields>		
+</metadata>

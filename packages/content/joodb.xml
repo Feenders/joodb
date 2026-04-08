@@ -3,11 +3,11 @@
 	<name>JooDB - Contentplugin</name>
 	<author>Dirk Hoeschen - computer * daten * netze : feenders</author>
 	<creationDate>Oct 2017</creationDate>
-	<copyright>Copyright (c) 2017 computer * daten * netze : feenders. All rights reserved.</copyright>
+	<copyright>Copyright (c) 2017 -2025 computer * daten * netze : feenders. All rights reserved.</copyright>
 	<license>GNU/GPL v3</license>
 	<authorEmail>service@feenders.de</authorEmail>
-	<authorUrl>http://joodb.feenders.de</authorUrl>
-	<version>4.0</version>
+	<authorUrl>//joodb.feenders.de</authorUrl>
+	<version>5.0</version>
 	<description>
 	    <![CDATA[
 		<h3>You have successfully installed the JooDatabase contentplugin</h3>
@@ -18,10 +18,11 @@
 		<p style="color: #d40000;">Dont forget to set the desired JooDB database after enabling the plugin.</p>
 		]]>
 	</description>
-	<files>
-		<filename plugin="joodb">joodb.php</filename>
-		<filename>index.html</filename>		
-	</files>
+    <namespace path="src">Joomla\Plugin\Content\Joodb</namespace>
+    <files>
+        <folder plugin="joodb">services</folder>
+        <folder>src</folder>
+    </files>
 	<config>
 		<fields name="params">	
 			<fieldset name="basic">

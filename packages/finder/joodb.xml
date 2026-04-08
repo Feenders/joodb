@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="finder" method="update">
+	<name>PLG_FINDER_JOODB</name>
+	<author>Dirk Hoeschen - computer * daten * netze : feenders</author>
+	<creationDate>Jan 2024</creationDate>
+	<copyright>Copyright 2024-2022 computer * daten * netze : feenders. All rights reserved.</copyright>
+	<license>GNU/GPL v3</license>
+	<authorEmail>hoeschen@feenders.de</authorEmail>
+	<authorUrl>https://joodb.feenders.de</authorUrl>
+	<version>1.0</version>
+	<description>PLG_FINDER_JOODB_XML_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\Finder\Joodb</namespace>
+	<files>
+		<folder>language</folder>
+		<folder plugin="joodb">services</folder>
+		<folder>src</folder>
+	</files>
+    <languages folder="language/">
+		<language tag="en-GB">en-GB/plg_finder_joodb.ini</language>
+		<language tag="en-GB">en-GB/plg_finder_joodb.sys.ini</language>
+		<language tag="de-DE">de-DE/plg_finder_joodb.ini</language>
+		<language tag="de-DE">de-DE/plg_finder_joodb.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldprefix="Joomla\Component\Finder\Administrator\Field">
+                <field name="database"
+                       type="sql"
+                       default="1"
+                       multiple="false"
+                       label="PLG_FINDER_JOODB_FIELD_DATABASE_LABEL"
+                       description="PLG_FINDER_JOODB_FIELD_DATABASE_DESC"
+                       query="SELECT id AS value, name AS database FROM #__joodb WHERE published=1" />
+                <field
+                        name="taxonomies"
+                        type="taxonomytypes"
+                        label="PLG_FINDER_JOODB_TAXONOMIES_LABEL"
+                        multiple="true"
+                >
+                    <option value="date">PLG_FINDER_JOODB_TAXONOMIES_DATE</option>
+                    <option value="type">PLG_FINDER_JOODB_TAXONOMIES_TYPE</option>
+                    <option value="author">PLG_FINDER_JOODB_TAXONOMIES_AUTHOR</option>
+                </field>
+            </fieldset>
+		</fields>
+	</config>
+</extension>

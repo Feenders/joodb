@@ -8,11 +8,13 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-JHtml::_('script', 'media/com_joodb/js/cm/codemirror.js', array('version' => 'auto', 'relative' => false));
-JHtml::_('script', 'media/com_joodb/js/cm/addon/mode/overlay.js', array('version' => 'auto', 'relative' => false));
-JHtml::_('script', 'media/com_joodb/js/cm/mode/xml/xml.js', array('version' => 'auto', 'relative' => false));
-JHtml::_('script', 'com_joodb/editor.js', array('version' => 'auto', 'relative' => true));
-JHtml::_('stylesheet', 'com_joodb/codemirror.css', array('version' => 'auto', 'relative' => true));
+use Joomla\CMS\HTML\HTMLHelper;
+
+HTMLHelper::_('script', 'media/com_joodb/js/cm/codemirror.js', array('version' => 'auto', 'relative' => false));
+HTMLHelper::_('script', 'media/com_joodb/js/cm/addon/mode/overlay.js', array('version' => 'auto', 'relative' => false));
+HTMLHelper::_('script', 'media/com_joodb/js/cm/mode/xml/xml.js', array('version' => 'auto', 'relative' => false));
+HTMLHelper::_('script', 'com_joodb/editor.js', array('version' => 'auto', 'relative' => true));
+HTMLHelper::_('stylesheet', 'com_joodb/codemirror.css', array('version' => 'auto', 'relative' => true));
 
 /**
  * Load special CodeMirror Editor and handle as JEditor Object

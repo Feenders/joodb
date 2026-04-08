@@ -8,7 +8,7 @@ defined('_JEXEC') or die('Restricted access');
  * Example {joodb highlight|description}
  */
 
-$search = JFactory::getApplication()->input->getString("search");
+$search = Factory::getApplication()->input->getString("search");
 $content = $item->{$part->parameter[0]};
 if (!empty($search) && !empty($content)) {		
 	preg_match_all('/'.addslashes($search).'/iU',$content, $matches);

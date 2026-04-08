@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 global $jbcounter;
 if (!isset($jbcounter)) $jbcounter = 0;
 $jbcounter++;
-$start = JFactory::getApplication()->input->getInt('start',0);
+$start = Factory::getApplication()->input->getInt('start',0);
 $output .= (int) $start + $jbcounter;
 
 

@@ -1,5 +1,12 @@
 <?php
+
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Language;
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
+
 
 /**
  * JooDatabase plugin
@@ -7,20 +14,8 @@ defined('_JEXEC') or die;
  * @package		Joodatabase.Plugin
  * @since		2.5
  */
-class plgQuickiconJoodb extends JPlugin
+class plgQuickiconJoodb extends CMSPlugin
 {
-	/**
-	 * Constructor
-	 *
-	 * @param       object  $subject The object to observe
-	 * @param       array   $config  An array that holds the plugin configuration
-	 *
-	 * @since       2.5
-	 */
-	public function __construct(& $subject, $config)
-	{
-		parent::__construct($subject, $config);
-	}
 
 	/**
 	 * Returns an icon definition for an icon
@@ -33,18 +28,19 @@ class plgQuickiconJoodb extends JPlugin
 	 */
 	public function onGetIcons($context)
 	{
-		if ($context != $this->params->get('context', 'mod_quickicon') || !JFactory::getUser()->authorise('core.edit', 'com_joodb')) {
-			return;
+		$app = Factory::getApplication();
+		if ($context != $this->params->get('context', 'mod_quickicon') || !$app->getIdentity()->authorise('core.edit', 'com_joodb')) {
+			return ;
 		}
 
-		$language = JFactory::getLanguage();
-		$language->load('com_jce', JPATH_ADMINISTRATOR);
+		$language = $app->getLanguage();
+		$language->load('com_joodb', JPATH_ADMINISTRATOR);
 
 		return array(array(
 			'link' => 'index.php?option=com_joodb&view=joodb',
-            'image' => 'picture fas fa-database',
-			'access'    => array('core.edit"', 'com_joodb'),
-			'text' => JText::_('JooDatabase'),
+            'image' => 'fas fa-database icon-database',
+			'access'    => array('core.edit', 'com_joodb'),
+			'text' => Text::_('JooDatabase'),
 			'id' => 'com_joodb'
 		));
 	}
