@@ -21,7 +21,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  */
 class com_joodbInstallerScript extends InstallerScript {
 
-	var $joodb_version = "5.0";
+	var $joodb_version = "5.0.1";
 	var $msgs = array();
 
 	/**

@@ -94,7 +94,7 @@ class JoodbTable extends Table {
 	 */
 	public function __construct( &$db ) {
 		parent::__construct( '#__joodb', 'id', $db );
-		$this->_tbldb = $this->getDatabase();
+		$this->_tbldb = $this->getDbo();
 	}
 
 	/**
