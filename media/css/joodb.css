@@ -13,8 +13,8 @@
 
 #joodbForm textarea { width: inherit; box-sizing: border-box; }
 #joodbForm .control-group { float: left; display: block; width: 100%; box-sizing: border-box; }
-#joodbForm .input-mini {  width: 60px; }
-#joodbForm .input-small { width: 90px; }
+#joodbForm .input-mini {  width: 80px; }
+#joodbForm .input-small { width: 110px; }
 #joodbForm .input-medium { width: 150px; }
 #joodbForm .input-large { width: 210px; }
 #joodbForm .input-xlarge { width: 270px; }

@@ -7,7 +7,7 @@
 	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>service@feenders.de</authorEmail>
 	<authorUrl>https://joodb.feenders.de</authorUrl>
-	<version>5.0.1</version>
+	<version>5.0.2</version>
 	<description><![CDATA[
 		JooDatabase is simple and fast way to include and display external tables (collections, databases) into Joomla.<br/>
 		It automatically generates pages containing the table data using editable templates for catalog and single entry views.<br/>

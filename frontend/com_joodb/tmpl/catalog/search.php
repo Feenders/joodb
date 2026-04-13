@@ -12,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Component\ComponentHelper;
 
 // phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
@@ -83,7 +84,7 @@ $app = Factory::getApplication();
 	function submitSearch(task) {
 		var form = document.joodbForm;
 		form.format.value="html";
-		if (task=="reset") {
+		if (task==="reset") {
 			form.ordering.value="";
 			form.orderby.value="";
             form.alpha.value="*";
@@ -91,13 +92,13 @@ $app = Factory::getApplication();
 			jQuery('#joodbForm input.check').attr('checked', false);
 			jQuery('#joodbForm input[type=text]').val('');
 			form.reset.value = true
-		} else if (task=="xportxls") {
+		} else if (task==="xportxls") {
 			form.format.value="xls";
-		} else if (task=="uncheck") {
+		} else if (task==="uncheck") {
 			jQuery('#joodbForm input.check').attr('checked', false);
-		} else if (task=="setlimit") {
+		} else if (task==="setlimit") {
 		}
-		if (form.search && form.search.value=="<?php echo Text::_("JDB_SEARCH..."); ?>") {
+		if (form.search && form.search.value==="<?php echo Text::_("JDB_SEARCH..."); ?>") {
 			form.search.value="";
 		}
         form.submit();

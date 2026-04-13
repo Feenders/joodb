@@ -1,11 +1,13 @@
 # JooDatabase v5.0 ##
 
-JooDatabase ist brought to you by
+### April 2026: JooDB 5.0 is a complete overhaul and modernization of the component. It was made Joomla 6 native and namespace compatible. ###
+
+JooDatabase is brought to you by
 Computer ⋅ Daten ⋅ Netze • Feenders
 
     * Author: Dirk Hoeschen (service@feenders.de)
 
-This component is Open Source. Feenders does not offer direct support. Please use the Forum. 
+This component is Open Source. Feenders does not offer direct support. Please use the Forum.
 However: If you need professional support or want individual modifications, ask for conditions.
 
 For more informations (user forum,help,FAQs and examples), look at http://joodb.feenders.de/support.html.
@@ -19,7 +21,7 @@ For more informations (user forum,help,FAQs and examples), look at http://joodb.
 
 ## License ##
 
-Copyright 2015-2026 © domputer ⋅ daten ⋅ netze • feenders. All rights reserved.
+Copyright 2015-2026 © computer ⋅ daten ⋅ netze • feenders. All rights reserved.
 
 JooDatabase is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
