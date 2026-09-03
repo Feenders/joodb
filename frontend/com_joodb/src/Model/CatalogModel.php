@@ -206,7 +206,7 @@ class CatalogModel extends BaseDatabaseModel
 		$ids = $app->getUserStateFromRequest($option.'.cid', 'cid',array(), 'array');
 		if (is_array($ids) && count($ids)>=1) {
 			foreach ($ids as $n => $fid)
-				$ids[$n] = "a.`".$this->_joobase->fid."`= '".$fid."'";
+				$ids[$n] = "a.`".$this->_joobase->fid."`= ".$this->_db->quote($fid);
 			$where[] = " (".join(" OR ", $ids).") ";
 		} else {
 			$app->setUserState($option.'.cid',array());

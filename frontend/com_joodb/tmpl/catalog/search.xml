@@ -71,7 +71,7 @@
             <field type="spacer" name="myspacer" hr="true"/>
             <field name="exportfields" type="textarea" default="" cols="30" rows="3" label="JDB_EXPORTFIELDS"
                    description="List of fieldnames"/>
-            <field name="eportlimit" type="text" default="100" label="JDB_EXPORTLIMIT" description="JDB_MAX_EXPORTENTRIES"/>
+            <field name="eXportlimit" type="text" default="100" label="JDB_EXPORTLIMIT" description="JDB_MAX_EXPORTENTRIES"/>
         </fieldset>
     </fields>
 </metadata>
