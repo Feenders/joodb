@@ -501,21 +501,4 @@ class DisplayController extends AdminController
 		die();
 	}
 
-	/**
-	 * Activate the joodb copy
-	 */
-	public function activate() {
-		$db = Factory::getContainer()->get(DatabaseInterface::class);
-		$db->setQuery("DELETE FROM `#__joodb_settings` WHERE `name` = 'license' AND `jb_id` IS NULL");
-		$db->execute();
-		$v = array();
-		$v['key'] = $this->input->getString("key");
-		$v['domain'] = $this->input->getString("domain");
-		$v['hash'] = $this->input->getString("hash");
-		$item = new stdClass();
-		$item->name = "license";
-		$item->value = json_encode($v);
-		$db->insertObject("#__joodb_settings", $item,"id");
-		$this->setRedirect('index.php?option=com_joodb&task=display&view=info',Text::_("JDB_SUCCESSFULLY_ACTIVATED"));
-	}
 }

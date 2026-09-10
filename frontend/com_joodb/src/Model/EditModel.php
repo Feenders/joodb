@@ -43,8 +43,8 @@ class EditModel extends BaseDatabaseModel {
 	/**
 	 * Constructor
 	 */
-	public function __construct($config = [], ?MVCFactoryInterface $factory = null)
-	{	parent::__construct($config, $factory);
+	public function __construct($config = [], ?MVCFactoryInterface $factory = null) {
+		parent::__construct($config, $factory);
 
 		$app = Factory::getApplication();	
 		$params	= $app->getParams();
@@ -53,7 +53,7 @@ class EditModel extends BaseDatabaseModel {
 		if (empty($joobase)) $joobase = $app->input->getInt('joobase', 1);
 		$this->_joobase = Table::getInstance('JoodbTable', '\\Feenders\\Component\\Joodb\\Administrator\\Table\\');
 		if (!$this->_joobase->load( $joobase)) throw new Exception($this->_joobase->getErrror(), 500);
-		if ($this->_joobase->published==0) throw new RuntimeException( 'Database is unpublished or not availiable',404);
+		if ($this->_joobase->published==0) throw new RuntimeException( 'Database is unpublished or not available',404);
 
 		$this->_db = $this->_joobase->getTableDBO();
 		

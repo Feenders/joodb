@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+/* JoodDB icon font File */
+
+/* Icon section */
+@font-face {
+    font-family: 'joodb';
+    src: url('../fonts/joodb.eot?96826386');
+    src: url('../fonts/joodb.eot?96826386#iefix') format('embedded-opentype'),
+    url('../fonts/joodb.woff2?96826386') format('woff2'),
+    url('../fonts/joodb.woff?96826386') format('woff'),
+    url('../fonts/joodb.ttf?96826386') format('truetype'),
+    url('../fonts/joodb.svg?96826386#joodb') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="jicon-"]:before, [class*=" jicon-"]:before {
+    font-family: "joodb";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.jicon-trash:before { content: '\e800'; } /* '' */
+.jicon-floppy:before { content: '\e801'; } /* '' */
+.jicon-credit-card:before { content: '\e802'; } /* '' */
+.jicon-forward:before { content: '\e803'; } /* '' */
+.jicon-reply:before { content: '\e804'; } /* '' */
+.jicon-upload-cloud:before { content: '\e805'; } /* '' */
+.jicon-download:before { content: '\e806'; } /* '' */
+.jicon-upload:before { content: '\e807'; } /* '' */
+.jicon-attach:before { content: '\e808'; } /* '' */
+.jicon-info-circled:before { content: '\e809'; } /* '' */
+.jicon-help-circled:before { content: '\e80a'; } /* '' */
+.jicon-picture:before { content: '\e80b'; } /* '' */
+.jicon-dot-3:before { content: '\e80c'; } /* '' */
+.jicon-database:before { content: '\e80d'; } /* '' */
+.jicon-cancel-squared:before { content: '\e80e'; } /* '' */
+.jicon-plus-squared:before { content: '\e80f'; } /* '' */
+.jicon-minus-squared:before { content: '\e810'; } /* '' */
+.jicon-quote:before { content: '\e811'; } /* '' */
+.jicon-ok:before { content: '\e812'; } /* '' */
+.jicon-cancel:before { content: '\e813'; } /* '' */
+.jicon-block-1:before { content: '\e814'; } /* '' */
+.jicon-clipboard:before { content: '\e815'; } /* '' */
+.jicon-picture-1:before { content: '\e816'; } /* '' */
+.jicon-folder:before { content: '\e817'; } /* '' */
+.jicon-popup:before { content: '\e818'; } /* '' */
+.jicon-menu:before { content: '\e819'; } /* '' */
+.jicon-th:before { content: '\e81a'; } /* '' */
+.jicon-th-large:before { content: '\e81b'; } /* '' */
+.jicon-star-filled:before { content: '\e81c'; } /* '' */
+.jicon-star:before { content: '\e81d'; } /* '' */
+.jicon-pencil-squared:before { content: '\e826'; } /* '' */
+.jicon-edit:before { content: '\e827'; } /* '' */
+.jicon-print:before { content: '\e828'; } /* '' */
+.jicon-spin2:before { content: '\e831'; } /* '' */
+.jicon-down-dir:before { content: '\e849'; } /* '' */
+.jicon-up-dir:before { content: '\e84a'; } /* '' */
+.jicon-left-dir:before { content: '\e84b'; } /* '' */
+.jicon-right-dir:before { content: '\e84c'; } /* '' */
+.jicon-down-open:before { content: '\e84d'; } /* '' */
+.jicon-left-open:before { content: '\e84e'; } /* '' */
+.jicon-right-open:before { content: '\e84f'; } /* '' */
+.jicon-up-open:before { content: '\e850'; } /* '' */
+.jicon-sort:before { content: '\e86e'; } /* '' */
+.jicon-sort-down:before { content: '\e86f'; } /* '' */
+.jicon-sort-up:before { content: '\e870'; } /* '' */
+.jicon-attention-1:before { content: '\e890'; } /* '' */
+.jicon-alert:before { content: '\e891'; } /* '' */
+.jicon-ok-circled:before { content: '\f06d'; } /* '' */
+.jicon-left-circled:before { content: '\f0a8'; } /* '' */
+.jicon-right-circled:before { content: '\f0a9'; } /* '' */
+.jicon-up-circled:before { content: '\f0aa'; } /* '' */
+.jicon-down-circled:before { content: '\f0ab'; } /* '' */
+.jicon-search:before { content: '\f50d'; } /* '' */

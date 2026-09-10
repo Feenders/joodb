@@ -30,7 +30,7 @@ class JoodbAdminHelper extends CMSHelper {
 	public static function getFunctions($context) {
 		$functions = array (
 			"catalog" => array('loop','pagenav','pagecount','resultcount','nodata','limitbox','searchbox|[fieldlist]','searchfield|FIELD|[cond]','alphabox','checkbox','groupselect|FIELD|[size]','sortlink|FIELD','readon','printbutton','notepadbutton','exportbutton','searchbutton','resetbutton','backbutton','editbutton|[cond]','deletebutton'),
-			"single" => array('printbutton','notepadbutton','backbutton','nextbutton','prevbutton','editbutton|[cond]'),
+			"single" => array('printbutton','notepadbutton','backbutton','nextbutton','prevbutton','editbutton|[cond]','deletebutton'),
 			"print" => array(),
 			"form" => array('form|FIELD','submitbutton','captcha','imageupload','subforms'),
 			"general" => array('ifis|FIELD|[value]|[cond]','ifnot|FIELD','else','endif','image','thumb','path2image','path2thumb','subtemplate|TEMPLATENAME','translate|STRING'));

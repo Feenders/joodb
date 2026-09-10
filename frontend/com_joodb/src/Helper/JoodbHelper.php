@@ -467,7 +467,8 @@ class JoodbHelper extends CMSHelper {
 	public static function getDeleteButton(&$item, &$joobase) {
 		if (!self::checkAuthorization($joobase,"accesse",$item)) return;
 		$app = Factory::getApplication();
-		$url  = Route::_("index.php?option=com_joodb&view=edit&joobase=".$joobase->id."&id=".$item->{$joobase->fid}."&task=delete&Itemid=".$app->input->getInt('Itemid'));
+		$session = $app->getSession();
+		$url  = Route::_("index.php?option=com_joodb&view=edit&joobase=".$joobase->id."&id=".$item->{$joobase->fid}."&task=delete&".$session->getFormToken()."=1&Itemid=".$app->input->getInt('Itemid'));
 		$params	= ComponentHelper::getParams('com_joodb');
 		if ($params->get('show_icons','0')==1) {
 			$text = HtmlHelper::image('media/com_joodb/images/remove.png',Text::_("JDB_DELETE_DATABASE_ENTRY"));

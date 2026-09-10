@@ -214,6 +214,9 @@ class DisplayController extends BaseController {
      * Delete an enty in the frontend
      */
     public function delete() {
+	    // Check for request forgeries.
+	    $this->checkToken('get');
+
 	    $app = Factory::getApplication();
         $model = $this->getModel('edit');
         $jb = $model->getJoobase();
