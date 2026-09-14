@@ -12,6 +12,8 @@ use Joomla\CMS\Uri\Uri;
 $fields = &$this->fields;
 echo $this->loadTemplate('header');
 
+$session = Factory::getApplication()->getSession();
+
 ?>
 <div class="content-box container-fluid" id="element-box">
     <form name="adminForm" action="index.php"  class="form-validate" method="post" >
@@ -20,6 +22,7 @@ echo $this->loadTemplate('header');
         <input type="hidden" name="tmpl" value="component" />
         <input type="hidden" name="layout" value="step1" />
         <input type="hidden" name="task" value="addnew" />
+        <?php echo HtmlHelper::_('form.token'); ?>
         <div class="row">
             <div class="col-8">
                 <table class="table table-sm">
@@ -76,11 +79,12 @@ echo $this->loadTemplate('header');
         jQuery('#indicator3').hide();
         if (document.formvalidator.isValid(frm)) {
             jQuery.ajaxSetup({ async: false });
-            jQuery.post("index.php?option=com_joodb&task=testconnection",
+            jQuery.post("index.php?option=com_joodb&task=testconnection&<?=$session->getFormToken()?>=1",
                 {'extdb_server': frm.server.value, 'extdb_user': frm.user.value, 'extdb_pass': frm.pass.value},
                 function(response) {
                     if (response.dbs) {
-                        success=true; id[1] = "block";
+                        success=true;
+                        id[1] = "block";
                         frm.database.options.length = 0;
                         response.dbs.forEach(function(el){
                             frm.database.options[frm.database.options.length] = new Option(el,el);

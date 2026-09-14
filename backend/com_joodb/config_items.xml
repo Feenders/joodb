@@ -2,8 +2,8 @@
 <config>
 	<fieldset name="basic" description="JDB_ACCESS_RIGHTS">
 		<field name="accessd" type="accesslevel" default="1" label="JDB_DATA_ACCESS" description="JDB_DETAILDATAACCESS" />
-		<field name="accessf" type="accesslevel" default="2" label="JDB_FORM_ACCESS" description="JDB_DETAILFORMACCESS" />
-		<field name="accesse" type="radio" layout="joomla.form.field.radio.switcher" size="1" default="1" label="JDB_EDIT_ACCESS" description="JDB_EDIT_ACCESS_DESC">
+		<field name="accessf" type="accesslevel" default="3" label="JDB_FORM_ACCESS" description="JDB_DETAILFORMACCESS" />
+		<field name="accesse" type="radio" layout="joomla.form.field.radio.switcher" size="1" default="0" label="JDB_EDIT_ACCESS" description="JDB_EDIT_ACCESS_DESC">
 			<option value="0">JDB_NO</option>
             <option value="1">JDB_YES</option>
 		</field>

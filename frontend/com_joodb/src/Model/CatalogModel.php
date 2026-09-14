@@ -10,8 +10,8 @@ namespace Feenders\Component\Joodb\Site\Model;
 
 defined('_JEXEC') or die();
 
+use Feenders\Component\Joodb\Administrator\Table\JoodbTable;
 use Feenders\Component\Joodb\Site\Helper\JoodbHelper;
-use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -89,17 +89,18 @@ class CatalogModel extends BaseDatabaseModel
 		}
 
 		// Load the Database entry
-		$this->_joobase =  Table::getInstance('JoodbTable', '\\Feenders\\Component\\Joodb\\Administrator\\Table\\');
+		$db = $this->getDatabase();
+		$this->_joobase = new JoodbTable($db);
 		if (!$this->_joobase->load( $joodbId)) throw new RuntimeException(  $this->_joobase->getError(), 500);
 		if ($this->_joobase->published==0) throw new RuntimeException( 'Database is unpublished or not availiable',404);
 
 		// access allowed... redirect to login if not
 		JoodbHelper::checkAuthorization($this->_joobase,"accessd");
-		$this->_db = $this->_joobase->getTableDBO();
-		$this->setDatabase($this->_db);
+		$this->setDatabase($this->_joobase->getTableDBO());
+		$db = &$this->_db;
 
 		// get the table field list
-		$this->_joobase->fields = $this->_db->getTableColumns($this->_joobase->table);
+		$this->_joobase->fields = $db->getTableColumns($this->_joobase->table);
 
 		$orderby = $app->getUserStateFromRequest($option.'.orderby', 'orderby',null, 'string');
 		$ordering = $app->getUserStateFromRequest($option.'.ordering', 'ordering',null, 'cmd');
@@ -121,13 +122,15 @@ class CatalogModel extends BaseDatabaseModel
 		if (empty($orderby)) $orderby = $params->get('orderby','fid');
 		if (empty($ordering)) $ordering = $params->get('ordering','DESC');
 
-		$this->setState('orderby', $this->_db->escape($orderby));
+		if (!isset($this->_joobase->fields[$orderby])) $orderby = $params->get('orderby','fid');
+
+		$this->setState('orderby', $db->escape($orderby));
 		$this->setState('ordering', $ordering);
 
 		// Get search pramaters
 		$search = $app->getUserStateFromRequest($option.'.search', 'search',null, 'string');
 		if (empty($search) || $search==Text::_("JDB_SEARCH...")) $search = "";
-		$search = $this->_db->escape(substr($search,0,40));
+		$search = $db->escape(substr($search,0,40));
 		$this->setState('search',$search);
 
 		$where = array();
@@ -137,7 +140,7 @@ class CatalogModel extends BaseDatabaseModel
 		}
 
 		$aold =  $app->getUserState($option.'.alpha',null);
-		$alpha = $app->getUserStateFromRequest($option.'.alpha', 'alpha',null, 'string');
+		$alpha = $app->getUserStateFromRequest($option.'.alpha', 'alpha','', 'string');
 		if ($alpha=="*") $alpha ="";
 		$this->setState('alphachar', $alpha);
 		//build search string
@@ -147,33 +150,34 @@ class CatalogModel extends BaseDatabaseModel
 				$this->setState('ordering', 'ASC');
 				$this->setState('limitstart', 0);
 			}
-			$where[] .= " ( a.`".$this->_joobase->ftitle."` LIKE '".$this->_db->escape($alpha)."%' )";
+			$where[] .= " ( a.".$db->quoteName($this->_joobase->ftitle)." LIKE ".$db->quote($alpha[0]."%")." )";
 		}
 
 		if (!empty($search) && strlen($search)>=2) {
 			$sfield = $app->getUserStateFromRequest($option.'.searchfield', 'searchfield',null, 'string');
+			if (!isset($this->_joobase->fields[$sfield])) { $sfield = ""; }
 			if (!empty($sfield)) {
-				$where[] = " ( a.`".addslashes($this->_db->escape($sfield))."` LIKE '%".$search."%' ) ";
+				$where[] = " ( a.".$db->quoteName($sfield)." LIKE ".$db->quote("%".$search."%")." ) ";
 			} else {
 				if ($params->get('search_all',1)==1) {
 					$wa = array();
 					foreach ($this->_joobase->fields AS $var => $field) {
 						switch ($field) {
 							case 'varchar' : case 'char' : case 'tinytext' : case 'text' : case 'mediumtext' : case 'longtext' :
-							$wa[] = "a.`".$var."` LIKE '%".$search."%'";
+							$wa[] = "a.".$db->quoteName($var)." LIKE ".$db->quote("%".$search."%");
 							break;
 							case 'int' : case 'smallint' : case 'mediumint' : case 'bigint' : case 'tinyint' :
 							if (is_numeric($search)) {
-								$wa[] = "a.`".$var."` = '".(int) $search."'";
+								$wa[] = "a.".$db->quoteName($var)." = ".intval($search);
 							}
 							break;
 							case 'date' : case 'datetime' : case 'timestamp' : case 'decimal' :
-							$wa[] = "a.`".$var."` LIKE '".$search."%'";
+							$wa[] = "a.".$db->quoteName($var)." LIKE ".$db->quote($search."%");
 							break;
 							case 'tinyblob' : case 'mediumblob' : case 'blob' : case 'longblob' :
 							break;
 							default :
-								$wa[] = "a.`".$var."` LIKE '".$search."'";
+								$wa[] = "a.".$db->quoteName($var)." LIKE ".$db->quote($search);
 						}
 					}
 					$where[] = " ( ".join(" OR ", $wa)." ) ";
@@ -183,21 +187,21 @@ class CatalogModel extends BaseDatabaseModel
 
 					foreach ($words as $word)
 					{
-						$word = $this->_db->quote('%' . $this->_db->escape($word, true) . '%', false);
+						$word = $db->quote("%" . $db->escape($word, true) . "%", false);
 						$wheres2 = array();
-						$wheres2[] = 'a.`'.$this->_joobase->ftitle.'` LIKE ' . $word;
-						$wheres2[] = 'a.`'.$this->_joobase->fcontent.'` LIKE ' . $word;
+						$wheres2[] = "a.".$db->quoteName($this->_joobase->ftitle)." LIKE " . $word;
+						$wheres2[] = "a.".$db->quoteName($this->_joobase->fcontent)." LIKE " . $word;
 						if (!empty($this->_joobase->fabstract)) {
-							$wheres2[] = 'a.`'.$this->_joobase->fabstract.'` LIKE ' . $word;
+							$wheres2[] = "a.".$db->quoteName($this->_joobase->fabstract)." LIKE " . $word;
 						}
-						$wheres[] = implode(' OR ', $wheres2);
+						$wheres[] = implode(" OR ", $wheres2);
 					}
 
-					$where[] =  '(' . implode(') OR (', $wheres) . ')';
+					$where[] =  "(" . implode(") OR (", $wheres) . ")";
 				}
 			}
 		}
-		if (!empty($this->_joobase->fstate)) $where[] = "a.`".$this->_joobase->fstate."`='1'";
+		if (!empty($this->_joobase->fstate)) $where[] = "a.".$db->quoteName($this->_joobase->fstate)."='1'";
 
 		$show_data = (($app->input->get('start',null)==null || $reset=="true") && $alpha==null && $params->get('form_only')==1) ? false : true;
 		$this->setState('show_data',$show_data);
@@ -206,15 +210,16 @@ class CatalogModel extends BaseDatabaseModel
 		$ids = $app->getUserStateFromRequest($option.'.cid', 'cid',array(), 'array');
 		if (is_array($ids) && count($ids)>=1) {
 			foreach ($ids as $n => $fid)
-				$ids[$n] = "a.`".$this->_joobase->fid."`= ".$this->_db->quote($fid);
+				$ids[$n] = "a.".$db->quoteName($this->_joobase->fid)."= ".$db->quote($fid);
 			$where[] = " (".join(" OR ", $ids).") ";
 		} else {
 			$app->setUserState($option.'.cid',array());
 		}
 
 		// limit to user id
-		if ($params->get('limit_to_user','0')==1 && $this->_joobase->getSubdata('fuser')) {
-			$where[]  = "`".$this->_joobase->getSubdata('fuser')."`='".Factory::getUser()->id."'";
+		$fuser = $this->_joobase->getSubdata('fuser');
+		if ($params->get('limit_to_user','0')==1 && !empty($fuser)) {
+			$where[]  = $db->quoteName($fuser)."='".Factory::getUser()->id."'";
 		}
 
 		// add filter from parametric search selects
@@ -224,7 +229,7 @@ class CatalogModel extends BaseDatabaseModel
 				if (isset($this->_joobase->fields[$column])) {
 					foreach ($sv as $n => $value)
 						if (empty($value)) unset($sv[$n]);
-						else $sv[$n] = "a.`".$column."` LIKE ".$this->_db->quote($value);
+						else $sv[$n] = "a.`".$column."` LIKE ".$db->quote($value);
 					if (count($sv)>=1) $where[] = " (".join(" OR ", $sv).") ";
 				}
 			}
@@ -241,13 +246,13 @@ class CatalogModel extends BaseDatabaseModel
 						if (!empty($value)) {
 							$cond = strtolower($cond);
 							if ($cond=="inset") {
-								$where[] = " FIND_IN_SET(".$this->_db->quote($value)." ,a.`" . $column . "`)";
+								$where[] = " FIND_IN_SET(".$db->quote($value)." ,a." .$db->quoteName($column) . ")";
 							} else {
 								$conditions = array("like" => "LIKE", "exact" => "LIKE", "min" => ">=", "max" => "<=", "start" => "LIKE", "end" => "LIKE");
 								$masks = array("like" => "#%s#", "exact" => "%s", "min" => "%s", "max" => "%s", "start" => "%s#", "end" => "#%s");
 								$sc = $conditions[$cond];
 								$value = sprintf($masks[$cond], $value);
-								$where[] = " a.`" . $column . "` " . $sc . " " . $this->_db->quote(str_replace("#", "%", $value));
+								$where[] = " a.`" . $column . "` " . $sc . " " . $db->quote(str_replace("#", "%", $value));
 							}
 						}
 					}
@@ -258,13 +263,13 @@ class CatalogModel extends BaseDatabaseModel
 		}
 
 		// notepad view select marked articles
-		if ($app->input->get("layout")=="notepad") {
+		if ($app->input->get("layout")==="notepad") {
 			$where = array();
-			$session = Factory::getSession();
+			$session = $app->getSession();
 			$articles = preg_split("/:/",$session->get('articles'));
 			if (count($articles)>=1) {
-				foreach ($articles as $n => $article) $articles[$n] = " a.`".$this->_joobase->fid."`='".$article."' ";
-			} else $articles = array(" a.`".$this->_joobase->fid."`='0'");
+				foreach ($articles as $n => $article) $articles[$n] = " a.".$db->quoteName($this->_joobase->fid)."=".$db->quote($article);
+			} else $articles = array(" a.".$db->quoteName($this->_joobase->fid)."='0'");
 			$where[] = " (".join(" OR ", $articles).") ";
 		}
 		if (count($where)>=1) $this->_where = " WHERE ".join(" AND ", $where);
@@ -347,11 +352,12 @@ class CatalogModel extends BaseDatabaseModel
 	 */
 	public function getColumnVals($column,$use_search=true)
 	{
+		$db = $this->getDatabase();
+		$app = Factory::getApplication();
 		// Get total if not exits
 		if ($use_search && !empty($this->_data)) {
 			$cw = $this->_where;
 		} else {
-			$app = Factory::getApplication();
 			$params	= $app->getParams();
 			$cw = $params->get("where_statement");
 			if (!empty($cw)) $cw = "WHERE ".$cw;
@@ -359,14 +365,14 @@ class CatalogModel extends BaseDatabaseModel
 		$fields = $this->_joobase->getTableFieldList();
 		$type = preg_split("/\(/",$fields[$column]);
 		$split = ($type[0]=="enum" || $type[0]=="set") ? true : false;
-		$query = "SELECT count(distinct(`".$this->_joobase->fid."`)) AS count,a.`".$column."` AS value, '' AS delimeter FROM `"
-			.$this->_joobase->table."` AS a ".$cw." GROUP BY a.`".$column."` ORDER BY a.`".$column."` ASC";
+		$query = "SELECT count(distinct(".$db->quoteName($this->_joobase->fid).")) AS count,a.".$db->quoteName($column)." AS value, '' AS delimeter FROM `"
+			.$this->_joobase->table."` AS a ".$cw." GROUP BY a.".$db->quoteName($column)." ORDER BY a.".$db->quoteName($column)." ASC";
 		$values = $this->_getList($query);
 		if (!empty($values)) {
 			foreach ($values as $item) {
 				if (!empty($item->value) && substr_count($item->value,",")>=1) { // its a value list - rebuild values
-					$cw .= (empty($cw)) ? " WHERE a.`".$column."` IS NOT NULL" : " AND a.`".$column."` IS NOT NULL";
-					$this->_db->setQuery("SELECT a.`".$column."` FROM `".$this->_joobase->table."` AS a ".$cw." ORDER BY a.`".$column."` ASC");
+					$cw .= (empty($cw)) ? " WHERE a.".$db->quoteName($column)." IS NOT NULL" : " AND a.".$db->quoteName($column)." IS NOT NULL";
+					$this->_db->setQuery("SELECT a.".$db->quoteName($column)." FROM ".$db->quoteName($this->_joobase->table)." AS a ".$cw." ORDER BY a.".$db->quoteName($column)." ASC");
 					$values = $this->_db->loadColumn();
 					$v= array();
 					foreach ($values as $value) {
@@ -435,6 +441,7 @@ class CatalogModel extends BaseDatabaseModel
 	 */
 	public function getSideElementUrl($dir="next",$position=0) {
 		$input  = Factory::getApplication()->input;
+		$db = $this->getDatabase();
 
 		if (empty($this->_position) && empty($this->_total)) {
 			$this->_position = $input->getInt('position');
@@ -444,15 +451,15 @@ class CatalogModel extends BaseDatabaseModel
 		if ( $this->getState('orderby') == "random") $this->setState('orderby','fid');
 		$orderby = $this->getState('orderby');
 		if (!isset($this->_joobase->fields[$orderby]) && isset($this->_joobase->{$orderby})) $orderby = $this->_joobase->{$orderby};
-		$orderby = " ORDER BY a.`".$orderby."` ".$this->getState('ordering');
+		$orderby = " ORDER BY a.".$db->quoteName($orderby)." ".$this->getState('ordering');
 		// get position only once to prevent heavy mysql load
 		if (empty($this->_position)) {
 			$id = $input->getInt('id', 1);
 			$query = "SELECT p.`jb_pos` FROM "
-				."(SELECT a.`".$this->_joobase->fid."`, @rownum := @rownum +1 AS jb_pos FROM "
-				."`".$this->_joobase->table."` a JOIN (SELECT @rownum :=0) r "
-				.$this->_where." GROUP BY a.`".$this->_joobase->fid."`"
-				.$orderby.") p WHERE p.`".$this->_joobase->fid."` = ".$id;
+				."(SELECT a.".$db->quoteName($this->_joobase->fid).", @rownum := @rownum +1 AS jb_pos FROM "
+				.$db->quoteName($this->_joobase->table)." a JOIN (SELECT @rownum :=0) r "
+				.$this->_where." GROUP BY a.".$db->quoteName($this->_joobase->fid)
+				.$orderby.") p WHERE p.".$db->quoteName($this->_joobase->fid)." = ".$id;
 			$this->_db->setQuery($query,0,1);
 			$this->_position = $this->_db->loadResult();
 		}
@@ -478,22 +485,23 @@ class CatalogModel extends BaseDatabaseModel
 	 */
 	protected function _buildQuery() {
 		if (empty($this->_query)) {
+			$db = $this->getDatabase();
 
 			// Get only the length of binary fields
 			$select = array();
 			foreach ($this->_joobase->fields AS $var => $field) {
 				if (strpos($field,"blob")===false) {
-					$select[] = "a.`".$var."`";
+					$select[] = "a.".$db->quoteName($var);
 				} else {
-					$select[] = "OCTET_LENGTH(a.`".$var."`) AS `".$var."`";
+					$select[] = "OCTET_LENGTH(a.".$db->quoteName($var).") AS ".$db->quoteName($var);
 				}
 			}
 
 			/* Query table and return the relevant fields. */
 			$this->_query = "SELECT ".join(",",$select)
-				. " FROM `" . $this->_joobase->table . "` AS a"
+				. " FROM ".$db->quoteName($this->_joobase->table)." AS a"
 				. $this->_where
-				. " GROUP BY a.`" . $this->_joobase->fid . "`";
+				. " GROUP BY a.".$db->quoteName($this->_joobase->fid)."";
 
 			// build ordering
 			$orderby = $this->getState('orderby');
@@ -501,7 +509,7 @@ class CatalogModel extends BaseDatabaseModel
 				$this->_query .= " ORDER BY RAND() ";
 			} else {
 				if (!isset($this->_joobase->fields[$orderby]) && isset($this->_joobase->{$orderby})) $orderby = $this->_joobase->{$orderby};
-				$this->_query .= " ORDER BY a.`" . $orderby . "` " . $this->getState('ordering');
+				$this->_query .= " ORDER BY a.".$db->quoteName($orderby) . " " . $this->getState('ordering');
 			}
 		}
 		// echo (string) $this->_query;

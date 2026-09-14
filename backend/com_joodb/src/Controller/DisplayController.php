@@ -15,6 +15,7 @@ defined('_JEXEC') or die;
 use Exception;
 use Feenders\Component\Joodb\Administrator\Helper\JoodbAdminHelper;
 use Feenders\Component\Joodb\Administrator\Helper\FormHelper;
+use Feenders\Component\Joodb\Administrator\Table\JoodbTable;
 use Joomla\CMS\Application\CMSWebApplicationInterface;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\AdminController;
@@ -341,7 +342,8 @@ class DisplayController extends AdminController
 		$this->checkToken();
 
 		$joodbid	= $this->input->getInt( 'joodbid');
-		$jb = Table::getInstance('JoodbTable', '\\Feenders\\Component\\Joodb\\Administrator\\Table\\');
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
+		$jb = new JoodbTable($db);
 		$jb->load( $joodbid );
 
 		// Initialize variables
@@ -446,9 +448,12 @@ class DisplayController extends AdminController
 	}
 
 	/**
-	 * Test the existance of a table
+	 * Test the existence of a table
 	 */
 	public function  testtable() {
+		// Check for request forgeries.
+		$this->checkToken('get');
+
 		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		if ($tname = $this->input->get("table"))
 			$tables = $db->getTableList();
@@ -462,6 +467,9 @@ class DisplayController extends AdminController
 	 * Tests an sql connection and retuns database names
 	 */
 	public function  testconnection() {
+		// Check for request forgeries.
+		$this->checkToken('get');
+
 		$dbs = array();
 		$link = @mysqli_connect($this->input->getString("extdb_server"), $this->input->getString("extdb_user"), $this->input->getString( "extdb_pass"),null);
 		if ($link) {
@@ -479,9 +487,12 @@ class DisplayController extends AdminController
 	}
 
 	/**
-	 * Get Tablefildlist from a Table of JooDB Database
+	 * Get Tablefieldlist from a Table of JooDB Database
 	 */
 	public function getfieldlist() {
+		// Check for request forgeries.
+		$this->checkToken('get');
+
 		header('Content-type: application/json');
 		if ($id = $this->input->getInt('jbid')) {
 			$db = Factory::getContainer()->get(DatabaseInterface::class);

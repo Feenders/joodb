@@ -94,7 +94,7 @@ class JoodbTable extends Table {
 	 */
 	public function __construct( &$db ) {
 		parent::__construct( '#__joodb', 'id', $db );
-		$this->_tbldb = $this->getDbo();
+		$this->_tbldb = $this->getDatabase();
 	}
 
 	/**
@@ -118,7 +118,7 @@ class JoodbTable extends Table {
 		$this->_jbparams = new Registry($this->params);
 		$p = & $this->_jbparams;
 		// Prepare external Database for Datatable
-		if ($p->get('extdb_server')!="") {
+		if (!empty($p->get('extdb_server'))) {
 			$options = array ('host' => $p->get('extdb_server'), 'user' => $p->get('extdb_user'), 'password' => $p->get('extdb_pass'), 'database' => $p->get('extdb'),'prefix' => '');
 			try {
 				$dbf = new DatabaseFactory();

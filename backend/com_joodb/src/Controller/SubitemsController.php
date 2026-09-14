@@ -13,15 +13,15 @@ defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
 use Exception;
+use Feenders\Component\Joodb\Administrator\Table\SubitemTable;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\AdminController;
-use Joomla\CMS\Table\Table;
 use Joomla\Database\DatabaseInterface;
 use function defined;
 
 /**
- * Main Contoller
+ * Main Controller
  */
 class SubitemsController extends AdminController {
 
@@ -30,7 +30,7 @@ class SubitemsController extends AdminController {
 		$this->checkToken();
 
 		$db = Factory::getContainer()->get(DatabaseInterface::class);
-		$table = new \Feenders\Component\Joodb\Administrator\Table\JoodbTable($db);
+		$table = new SubitemTable($db);
 		if (!$table->bind($_POST)) {
 			throw new Exception($table->getError(),500);
 		}

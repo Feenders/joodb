@@ -20,5 +20,5 @@ if(filter_var($client, FILTER_VALIDATE_IP)) {
     $ip = $_SERVER['REMOTE_ADDR'];
 }
 
-$output .= '<input type="hidden" name="userip" value="'.$ip.'" >';
+$output .= '<input type="hidden" name="userip" value="'.addslashes($ip).'" >';
 

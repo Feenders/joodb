@@ -9,6 +9,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 $app = Factory::getApplication();
+$session = $app->getSession();
 
 HtmlHelper::_('script', 'com_joodb/jquery.form.min.js', array('version' => 'auto', 'relative' => true));
 
@@ -115,7 +116,7 @@ HtmlHelper::_('script', 'com_joodb/jquery.form.min.js', array('version' => 'auto
                 // Test if table exists
                 $("#toolbar-box").hide();
                 $.ajaxSetup({ async: false });
-                $.getJSON("index.php?option=com_joodb&task=testtable",
+                $.getJSON("index.php?option=com_joodb&task=testtable&<?=$session->getFormToken()?>=1",
                     {'table': frm.tablename.value},
                     function (response) {
                         if (response == true) {
@@ -138,7 +139,7 @@ HtmlHelper::_('script', 'com_joodb/jquery.form.min.js', array('version' => 'auto
         }
 
         $("#loadmsg").bind('getChunk',function () {
-            $.getJSON("index.php?option=com_joodb&task=import.importchunk", function (r) {
+            $.getJSON("index.php?option=com_joodb&task=import.importchunk&<?=$session->getFormToken()?>=1", function (r) {
                 $("#loadmsg>legend:first-of-type").html(r.header);
                 $("#loadmsg>div:first-of-type").html(r.message);
                 if (r.error==false && r.finished==false) {

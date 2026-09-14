@@ -11,6 +11,7 @@ namespace Feenders\Component\Joodb\Site\Model;
 defined('_JEXEC') or die();
 
 use Feenders\Component\Joodb\Site\Helper\JoodbHelper;
+use Feenders\Component\Joodb\Administrator\Table\JoodbTable;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
@@ -55,7 +56,8 @@ class ArticleModel extends BaseDatabaseModel {
 		$joobase = $params->get("joobase",0);
 		// Load the Database parameters
 		if ($joobase==0) $joobase = $app->input->getInt('joobase', 1);
-		$this->_joobase = Table::getInstance('JoodbTable', '\\Feenders\\Component\\Joodb\\Administrator\\Table\\');
+		$db = $this->getDatabase();
+		$this->_joobase = new JoodbTable($db);
 		if (!$this->_joobase->load( $joobase)) throw new RuntimeException(  $this->_joobase->getError(), 500);
 		if ($this->_joobase->published==0) throw new RuntimeException( 'Database is unpublished or not availiable',404);
 		$this->_db = $this->_joobase->getTableDBO();

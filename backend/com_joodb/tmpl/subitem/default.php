@@ -9,8 +9,9 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Editor\Editor;
 
 $app = Factory::getApplication();
-$document = $app->getDocument();
+$session = $app->getSession();
 
+$document = $app->getDocument();
 $document->addStyleSheet('components/com_joodb/assets/singleview.css');
 HTMLHelper::_('jquery.framework');
 HtmlHelper::_('behavior.formvalidator');
@@ -206,7 +207,8 @@ if ($this->config->get('internal_editor', 1) == 0) {
     function getIdxFieldList() {
         var frm = document.subForm;
         jQuery.ajaxSetup({ async: false });
-        jQuery.getJSON("index.php?option=com_joodb&task=getfieldlist", {'table': frm.idx_table.value,'jbid': frm.jb_id.value },
+        jQuery.getJSON("index.php?option=com_joodb&task=getfieldlist&<?=$session->getFormToken()?>=1",
+            {'table': frm.idx_table.value,'jbid': frm.jb_id.value },
             function(response) {
                 if (response) {
                     v1 = frm.idx_id1.value; v2 = frm.idx_id2.value;
@@ -227,7 +229,8 @@ if ($this->config->get('internal_editor', 1) == 0) {
     function getFieldList() {
         var frm = document.subForm;
         jQuery.ajaxSetup({ async: false });
-        jQuery.getJSON("index.php?option=com_joodb&task=getfieldlist", {'table': frm.table.value,'jbid': frm.jb_id.value },
+        jQuery.getJSON("index.php?option=com_joodb&task=getfieldlist&<?=$session->getFormToken()?>=1",
+            {'table': frm.table.value,'jbid': frm.jb_id.value },
             function(response) {
                 if (response) {
                     svalue = frm.id_field.value; nvalue = frm.name_field.value;

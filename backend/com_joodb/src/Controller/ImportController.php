@@ -19,6 +19,7 @@ use Joomla\CMS\MVC\Controller\AdminController;
 use Feenders\Component\Joodb\Administrator\Model\ImportModel;
 use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
 use Joomla\Input\Input;
+use JText;
 use function defined;
 
 /**
@@ -34,6 +35,10 @@ class ImportController extends AdminController {
 	 */
 	// constructor - registers additional tasks to methods
 	public function __construct($config = [] , ?MVCFactoryInterface $factory = null, ?CMSApplicationInterface $app = null, ?Input $input = null) {
+
+		if (!$app->getIdentity()->authorise('core.manage', 'com_joodb')) {
+			throw new \Exception(Text::_('JERROR_ALERTNOAUTHOR'),403);
+		}
 
 		// Register Extra tasks
 		parent::__construct($config, $factory, $app, $input);
@@ -71,6 +76,7 @@ class ImportController extends AdminController {
 	 * Get next chunk from table / data is passed by model
 	 */
 	public function importchunk() {
+		$this->checkToken('get');
 		$model = $this->getModel("Import","",array());
 		$session = Factory::getApplication()->getSession();
 		$importdata = json_decode($session->get('importdata','[]'),true);

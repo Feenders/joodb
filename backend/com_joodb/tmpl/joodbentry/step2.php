@@ -5,6 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Factory;
 use Feenders\Component\Joodb\Administrator\Helper\JoodbAdminHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
 
 $app = Factory::getApplication();
 
@@ -25,6 +26,7 @@ echo $this->loadTemplate('header');
 		<input type="hidden" name="tmpl" value="component" />
 		<input type="hidden" name="layout" value="step3" />
 		<input type="hidden" name="task" value="addnew" />
+        <?php echo HtmlHelper::_('form.token'); ?>
 		<table cellpadding="5"><tr><td>
 		    <label for="jform_fid"><?php echo Text::_("JDB_PRIMARY_INDEX"); ?></label>
 		</td><td>

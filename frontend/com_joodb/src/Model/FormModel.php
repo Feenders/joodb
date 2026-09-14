@@ -11,6 +11,7 @@ namespace Feenders\Component\Joodb\Site\Model;
 defined('_JEXEC') or die();
 
 use Exception;
+use Feenders\Component\Joodb\Administrator\Table\JoodbTable;
 use Feenders\Component\Joodb\Site\Helper\JoodbHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
@@ -51,7 +52,8 @@ class FormModel extends BaseDatabaseModel {
 		$joobase = $params->get("joobase",0);
 		// Load the Database parameters
 		if ($joobase==0) $joobase = $app->input->getInt('joobase', 1);
-		$this->_joobase = Table::getInstance('JoodbTable', '\\Feenders\\Component\\Joodb\\Administrator\\Table\\');
+		$db = $this->getDatabase();
+		$this->_joobase = new JoodbTable($db);
 		if (!$this->_joobase->load( $joobase)) {
 			throw new Exception($this->_joobase->getError(),500);
 		}

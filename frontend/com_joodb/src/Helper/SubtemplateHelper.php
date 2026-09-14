@@ -29,7 +29,7 @@ class SubtemplateHelper extends JoodbHelper {
 		$return = "";
 		if ($stmpl = $joobase->getSubitem($name)) {
 			$db = $joobase->getTableDBO();
-			$query	= "SELECT a.* FROM `".$stmpl->table."` AS a ";
+			$query	= "SELECT a.* FROM ".$db->quoteName($stmpl->table)." AS a ";
 			switch ($stmpl->type) {
 				case '1' :
 					$query .= " WHERE a.`".$stmpl->id_field."`='".$item->{$joobase->fid}."' ";

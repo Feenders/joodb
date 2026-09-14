@@ -5,6 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
 
 $app = Factory::getApplication();
 
@@ -22,6 +23,7 @@ echo $this->loadTemplate('header');
         <input type="hidden" name="tmpl" value="component" />
         <input type="hidden" name="layout" value="step2" />
         <input type="hidden" name="task" value="addnew" />
+        <?php echo HtmlHelper::_('form.token'); ?>
         <table class="table table-sm">
             <tr>
                 <td><label for="jform_dbname"><?php echo Text::_("JDB_NAME_YOUR_DB"); ?></label></td>

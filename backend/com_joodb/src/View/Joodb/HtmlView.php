@@ -1,10 +1,10 @@
 <?php
 /**
-* @package		JooDatabase - http://joodb.feenders.de
-* @copyright	Copyright (C) Computer - Daten - Netze : Feenders. All rights reserved.
-* @license		GNU/GPL, see LICENSE.php
-* @author		Dirk Hoeschen (hoeschen@feenders.de)
-*/
+ * @package		JooDatabase - http://joodb.feenders.de
+ * @copyright	Copyright (C) Computer - Daten - Netze : Feenders. All rights reserved.
+ * @license		GNU/GPL, see LICENSE.php
+ * @author		Dirk Hoeschen (hoeschen@feenders.de)
+ */
 
 namespace Feenders\Component\Joodb\Administrator\View\Joodb;
 
@@ -52,43 +52,46 @@ class HtmlView extends BaseHtmlView
 	 * @since   4.0
 	 */
 	protected function addToolbar() {
+		$app = Factory::getApplication();
 		$text = Text::_("JDB_DATABASES");
 		ToolBarHelper::title(Text::_("JooDatabase") . ': <small><small>[' . $text . ']</small></small>', 'database');
 
-		$bar = Factory::getApplication()->getDocument()->getToolbar('toolbar');
-		JoodbAdminHelper::getPopupButton('new', 'JTOOLBAR_NEW', 'index.php?option=com_joodb&amp;tmpl=component&amp;view=joodbentry&amp;layout=step1&amp;task=addnew', 680, 400);
+		$bar = $app->getDocument()->getToolbar('toolbar');
+		if ($app->getIdentity()->authorise('core.manage', 'com_joodb')) {
+			JoodbAdminHelper::getPopupButton('new', 'JTOOLBAR_NEW', 'index.php?option=com_joodb&amp;tmpl=component&amp;view=joodbentry&amp;layout=step1&amp;task=addnew', 680, 400);
 
-		$dropdown = $bar->dropdownButton('status-group')
-			->text('JTOOLBAR_CHANGE_STATUS')
-			->toggleSplit(false)
-			->icon('icon-ellipsis-h')
-			->buttonClass('btn btn-action')
-			->listCheck(true);
+			$dropdown = $bar->dropdownButton('status-group')
+				->text('JTOOLBAR_CHANGE_STATUS')
+				->toggleSplit(false)
+				->icon('icon-ellipsis-h')
+				->buttonClass('btn btn-action')
+				->listCheck(true);
 
-		$childBar = $dropdown->getChildToolbar();
+			$childBar = $dropdown->getChildToolbar();
 
-		$childBar->standardButton('edit')
-			->text("JTOOLBAR_EDIT")
-			->icon('icon-edit')
-			->task('edit')
-			->listCheck(true);
+			$childBar->standardButton('edit')
+				->text("JTOOLBAR_EDIT")
+				->icon('icon-edit')
+				->task('edit')
+				->listCheck(true);
 
-		$childBar->publish('publish')
-			->text('JTOOLBAR_PUBLISH')
-			->listCheck(true);
+			$childBar->publish('publish')
+				->text('JTOOLBAR_PUBLISH')
+				->listCheck(true);
 
-		$childBar->unpublish('unpublish')
-			->text('JTOOLBAR_UNPUBLISH')
-			->listCheck(true);
+			$childBar->unpublish('unpublish')
+				->text('JTOOLBAR_UNPUBLISH')
+				->listCheck(true);
 
-		$childBar->delete('remove')
-			->text('JTOOLBAR_DELETE')
-			->icon('icon-trash')
-			->message('JDB_REALLY_DELETE')
-			->listCheck(true);
+			$childBar->delete('remove')
+				->text('JTOOLBAR_DELETE')
+				->icon('icon-trash')
+				->message('JDB_REALLY_DELETE')
+				->listCheck(true);
 
-		JoodbAdminHelper::getPopupButton('upload', 'JDB_IMPORT', 'index.php?option=com_joodb&amp;tmpl=component&amp;view=import', 680, 480);
-		ToolBarHelper::preferences('com_joodb');
+			JoodbAdminHelper::getPopupButton('upload', 'JDB_IMPORT', 'index.php?option=com_joodb&amp;tmpl=component&amp;view=import', 680, 480);
+			ToolBarHelper::preferences('com_joodb');
+		}
 		$bar->appendButton('Help', 'http://joodb.feenders.de/support.html', false, 'http://joodb.feenders.de/support.html', null);
 	}
 }

@@ -7,7 +7,7 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
-if (count($part->parameter)>=1) {
+if (count($part->parameter)>=1 && isset($this->item->{$part->parameter[0]})) {
     $field = $part->parameter[0];
     $output .= '<input type="hidden" name="'.$field.'" value="'.htmlspecialchars(stripcslashes($this->item->{$field}), ENT_COMPAT, 'UTF-8').'" />';
     $output .= $this->item->{$field};

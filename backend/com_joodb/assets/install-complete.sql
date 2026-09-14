@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `#__joodb_sample` (
   PRIMARY KEY (`myid`),
   KEY `title` (`title`),
   KEY `state` (`state`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Table with joodb sample nosense data. Save to remove';
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Table with joodb sample nonsense data. Save to remove';
 INSERT INTO `#__joodb_sample` (`myid`, `title`, `value`, `usefull`, `picture`, `short_description`, `description`, `wikipedia`, `category`, `date`, `state`) VALUES
 (1, 'Cat', '3,45', 'No', 'cat.webp', 'A very useless domestic cat.', 'The cat (Felis catus), also known as the domestic cat or housecat to distinguish it from other felines and felids, is a small carnivorous mammal that is valued by humans for its companionship and its ability to hunt vermin and household pests. It has been associated with humans for at least 9,500 years and is currently the most popular pet in the world.', 'http://en.wikipedia.org/wiki/Cat', 'Sport,Food,Creature', '2009-10-27 16:37:49', 1),
 (3, 'Basketball', '9,45', 'Yes', 'basketball.webp', 'A Baskeball sport utility.', 'Basketball is a team sport in which two teams of 5 players try to score points against one another by placing a ball through a 10 foot (3.048 m) high hoop (the goal) under organized rules. Basketball is one of the most popular and widely viewed sports in the world.', 'http://en.wikipedia.org/wiki/Basketball', 'Sport', '2009-10-27 16:36:39', 1),

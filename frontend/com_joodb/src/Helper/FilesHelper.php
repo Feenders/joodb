@@ -39,7 +39,7 @@ class FilesHelper extends CMSHelper {
 		// Move uploaded image
 		File::upload($newimage['tmp_name'], $org_img);
 		if (file_exists($org_img)) {
-			// make shure we accept only png, gif or jpg
+			// make sure we accept only png, gif or jpg
 			$ext = false;
 			if ($imageinfo = getimagesize($org_img)) {
 				switch ($imageinfo[2]) {

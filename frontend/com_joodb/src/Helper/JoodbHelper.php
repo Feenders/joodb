@@ -216,7 +216,7 @@ class JoodbHelper extends CMSHelper {
 					}
 					break;
 				case "decimal" :
-					$field= number_format($field, $vars[1], Text::_('DECIMALS_SEPARATOR'), Text::_('THOUSANDS_SEPARATOR'));
+					$field= number_format($field, intval($vars[1]), Text::_('DECIMALS_SEPARATOR'), Text::_('THOUSANDS_SEPARATOR'));
 					break;
 				case "set":
 					$set = preg_split("/,/",$field);
