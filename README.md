@@ -1,6 +1,6 @@
-# JooDatabase v5.2 ##
+# JooDatabase v5.3 ##
 
-### April 2026: JooDB 5.0 is a complete overhaul and modernization of the component. It was made Joomla 6 native and namespace compatible. ###
+### April 2026: JooDB 5 is a complete overhaul and modernisation of the component. It was made Joomla 6 native and namespace compatible. ###
 
 JooDatabase is brought to you by
 Computer ⋅ Daten ⋅ Netze • Feenders
